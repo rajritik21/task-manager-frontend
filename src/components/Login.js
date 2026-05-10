@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Box, TextField, Button, Typography, IconButton } from '@mui/material';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
+import API_BASE_URL from '../config';
 
 const Login = () => {
   const [isActive, setIsActive] = useState(false);
@@ -39,7 +40,7 @@ const Login = () => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/api/auth/login', loginData);
+      const response = await axios.post(`${API_BASE_URL}/auth/login`, loginData);
       
       // Clean up any existing localStorage items
       const allowedKeys = ['token', 'userData'];
@@ -66,7 +67,7 @@ const Login = () => {
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5001/api/auth/register', registerData);
+      await axios.post(`${API_BASE_URL}/auth/register`, registerData);
       alert('Registration successful! Please login.');
       setIsActive(false);
     } catch (error) {

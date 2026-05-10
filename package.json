@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "homepage": "https://rajritik21.github.io/Task_Manager",
+  "homepage": "https://rajritik21.github.io/task-manager-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useContext, useCallback } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config';
 
 const TodoContext = createContext();
 
@@ -57,7 +58,7 @@ export const TodoProvider = ({ children }) => {
     dispatch({ type: ACTIONS.SET_ERROR, payload: null });
     
     try {
-      const response = await axios.get('http://localhost:5001/api/todos', {
+      const response = await axios.get(`${API_BASE_URL}/todos`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       dispatch({ type: ACTIONS.SET_TODOS, payload: response.data });
@@ -75,7 +76,7 @@ export const TodoProvider = ({ children }) => {
     dispatch({ type: ACTIONS.SET_ERROR, payload: null });
     
     try {
-      const response = await axios.post('http://localhost:5001/api/todos', todo, {
+      const response = await axios.post(`${API_BASE_URL}/todos`, todo, {
         headers: { Authorization: `Bearer ${token}` }
       });
       dispatch({ type: ACTIONS.ADD_TODO, payload: response.data });
@@ -95,7 +96,7 @@ export const TodoProvider = ({ children }) => {
     dispatch({ type: ACTIONS.SET_ERROR, payload: null });
     
     try {
-      const response = await axios.put(`http://localhost:5001/api/todos/${todoId}`, updatedTodo, {
+      const response = await axios.put(`${API_BASE_URL}/todos/${todoId}`, updatedTodo, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -116,7 +117,7 @@ export const TodoProvider = ({ children }) => {
     dispatch({ type: ACTIONS.SET_ERROR, payload: null });
     
     try {
-      const response = await axios.patch(`http://localhost:5001/api/todos/${todoId}/toggle`, {}, {
+      const response = await axios.patch(`${API_BASE_URL}/todos/${todoId}/toggle`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -137,7 +138,7 @@ export const TodoProvider = ({ children }) => {
     dispatch({ type: ACTIONS.SET_ERROR, payload: null });
     
     try {
-      await axios.delete(`http://localhost:5001/api/todos/${todoId}`, {
+      await axios.delete(`${API_BASE_URL}/todos/${todoId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
